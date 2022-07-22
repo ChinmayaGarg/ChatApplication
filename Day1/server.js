@@ -1,4 +1,4 @@
-var express = require("express"); //
+var express = require('express'); //
 var app = express(); //we set reference to app variable from an instance of express
 
 // https://www.geeksforgeeks.org/express-js-app-use-function/
@@ -9,9 +9,9 @@ app.use(express.static(__dirname));
 
 //starts the express service and listens for requests. It takes port number as first parameter
 var server = app.listen(3000, () => {
-  console.log("Server is listening on port 3000"); //Port Hardcoded
+  console.log('Server is listening on port 3000'); //Port Hardcoded
 
   //Taken reference of the actual port in case it changes once we deploy our app on a server
-  console.log("Server is listening on port", server.address().port);
+  console.log('Server is listening on port', server.address().port);
 });
 // We were able to access server because server got assigned by the value from app.listen first and then the call back function is called once the app.listen() finished running.

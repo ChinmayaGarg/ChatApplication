@@ -53,6 +53,11 @@
 
 <script>
   $(() => {
-    console.log('loaded');
+    addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });
   });
+
+  // A function that will allow us to add messages to our message history
+  function addMessages(message) {
+    $('#messages').append(`<h4> ${message.name} </h4> <p>${message.message}</p>`);
+  }
 </script>

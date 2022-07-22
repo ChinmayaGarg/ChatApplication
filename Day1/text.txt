@@ -1,0 +1,2 @@
+https://www.infoq.com/news/2020/08/bootsrap-5-drops-jquery/
+Bootstrap 5 removes dependency on jQuery

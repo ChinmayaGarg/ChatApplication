@@ -7,6 +7,13 @@ var app = express(); //we set reference to app variable from an instance of expr
 // In order to tell express that we will be serving a static file inside our app.use, we use express.static() and pass in the entire directory with _dirname.
 app.use(express.static(__dirname));
 
+// We created a route for endpoint. app.get() means we will be handling a GET request.
+// First parameter is the route "localhost:3000/messages"
+// Second parameter is the call back to handle the request. Takes in request and gives reference to response
+app.get('/messages', (req, res) => {
+  res.send('hello');
+});
+
 //starts the express service and listens for requests. It takes port number as first parameter
 var server = app.listen(3000, () => {
   console.log('Server is listening on port 3000'); //Port Hardcoded

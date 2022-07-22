@@ -43,7 +43,7 @@
     <br />
     <input class="form-control" placeholder="Name" />
     <br />
-    <button class="btn btn-success">Send</button>
+    <button id="send" class="btn btn-success">Send</button>
     <br />
     <br />
     <br />
@@ -53,7 +53,9 @@
 
 <script>
   $(() => {
-    addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });
+    $('#send').click(() => {
+      addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });
+    });
   });
 
   // A function that will allow us to add messages to our message history

@@ -1,4 +1,5 @@
 var express = require('express'); //
+var bodyParser = require('body-parser');
 var app = express(); //we set reference to app variable from an instance of express
 
 // https://www.geeksforgeeks.org/express-js-app-use-function/
@@ -6,6 +7,10 @@ var app = express(); //we set reference to app variable from an instance of expr
 //we will use app.use() to serve static content. We served index.html through app.use().
 // In order to tell express that we will be serving a static file inside our app.use, we use express.static() and pass in the entire directory with _dirname.
 app.use(express.static(__dirname));
+
+// We have set body-parser as a middleware using app.use().
+// .JSON in bodyParser.JSON lets body-parser know, we expect JSON to be coming in with our HTTP request.
+app.use(bodyParser.json());
 
 var messages = [
   { name: 'Chinmaya', message: 'How are you?' },

@@ -17,7 +17,15 @@ var messages = [
 // Second parameter is the call back to handle the request. Takes in request and gives reference to response
 app.get('/messages', (req, res) => {
   // res.send('hello'); // Static string
-  res.send(messages); // We updated static string to render a dynamic object
+  res.send(messages); // We updated static string to render a static object
+});
+
+// We created a route for endpoint. app.post() means we will be handling a POST request.
+// added status 200 ok to send when a POST request sends data to localhost:3000/messages
+// sendStatus is necessary for POST request to work fine...comment out res.sendStatus(200) and any POST request on localhost:3000/messages sent will not work
+app.post('/messages', (req, res) => {
+  console.log(req.body);
+  res.sendStatus(200);
 });
 
 //starts the express service and listens for requests. It takes port number as first parameter

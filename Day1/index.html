@@ -23,6 +23,9 @@
   integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
   crossorigin="anonymous"
 ></script>
+<script src="/socket.io/socket.io.js"></script>
+<!-- Even after importing socket.io, we will get an error because we are unable to find Socket.IO JavaScript file that we included.-->
+<!-- The problem is that we can't directly serve our backend with Express any longer. We have to use Node http server to keep both Express and Socket.IO running -->
 
 <!-- For our demo application the most important will be jQuery. 
     We will be using jQuery in order to inject our data into the HTML, 

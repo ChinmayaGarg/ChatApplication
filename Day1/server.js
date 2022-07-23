@@ -24,6 +24,7 @@ app.get('/messages', (req, res) => {
 // added status 200 ok to send when a POST request sends data to localhost:3000/messages
 // sendStatus is necessary for POST request to work fine...comment out res.sendStatus(200) and any POST request on localhost:3000/messages sent will not work
 app.post('/messages', (req, res) => {
+  // This console.log renders undefined on the console because express has no built in support to parse the body. Hence, we need to install package, named "body-parser" using "npm install -s body-parser"
   console.log(req.body);
   res.sendStatus(200);
 });

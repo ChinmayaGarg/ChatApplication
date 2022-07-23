@@ -37,7 +37,9 @@
     <br />
     <br />
     <br />
-    <input class="form-control" placeholder="Name" />
+    <input id="name" class="form-control" placeholder="Name" />
+    <br />
+    <textarea id="message" class="form-control" placeholder="Message"></textarea>
     <br />
     <button id="send" class="btn btn-success">Send</button>
     <br />
@@ -50,7 +52,12 @@
 <script>
   $(() => {
     $('#send').click(() => {
-      addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });
+      // addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });
+      var message = {
+        name: $('#name').val(),
+        message: $('#message').val(),
+      };
+      postMessages(message);
     });
     getMessages();
   });
@@ -65,5 +72,9 @@
       console.log(data);
       data.forEach(addMessages);
     });
+  }
+
+  function postMessages(message) {
+    $.post('http://localhost:3000/messages', message);
   }
 </script>

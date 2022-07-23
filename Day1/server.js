@@ -12,6 +12,9 @@ app.use(express.static(__dirname));
 // .JSON in bodyParser.JSON lets body-parser know, we expect JSON to be coming in with our HTTP request.
 app.use(bodyParser.json());
 
+// the mesages which will be displayed on frontend will be undefined because what comes in from our browser(Front-end) is URL encoded and hence we must set up the body-parser to support URL encoded data.
+app.use(bodyParser.urlencoded({ extended: false }));
+
 var messages = [
   { name: 'Chinmaya', message: 'How are you?' },
   { name: 'Professor X', message: 'I am good, what about you?' },

@@ -31,6 +31,7 @@ app.get('/messages', (req, res) => {
 app.post('/messages', (req, res) => {
   // This console.log renders undefined on the console because express has no built in support to parse the body. Hence, we need to install package, named "body-parser" using "npm install -s body-parser"
   console.log(req.body);
+  messages.push(req.body);
   res.sendStatus(200);
 });
 

@@ -12,7 +12,7 @@
   integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
   crossorigin="anonymous"
 />
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
 <script
   src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
   integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
@@ -37,9 +37,44 @@
     <br />
     <br />
     <br />
-    <input class="form-control" placeholder="Name" />
+    <input id="name" class="form-control" placeholder="Name" />
     <br />
-    <button class="btn btn-success">Send</button>
+    <textarea id="message" class="form-control" placeholder="Message"></textarea>
+    <br />
+    <button id="send" class="btn btn-success">Send</button>
+    <br />
+    <br />
+    <br />
     <div id="messages"></div>
   </div>
 </div>
+
+<script>
+  $(() => {
+    $('#send').click(() => {
+      // addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });
+      var message = {
+        name: $('#name').val(),
+        message: $('#message').val(),
+      };
+      postMessages(message);
+    });
+    getMessages();
+  });
+
+  // A function that will allow us to add messages to our message history
+  function addMessages(message) {
+    $('#messages').append(`<h4> ${message.name} </h4> <p>${message.message}</p>`);
+  }
+
+  function getMessages() {
+    $.get('http://localhost:3000/messages', (data) => {
+      console.log(data);
+      data.forEach(addMessages);
+    });
+  }
+
+  function postMessages(message) {
+    $.post('http://localhost:3000/messages', message);
+  }
+</script>

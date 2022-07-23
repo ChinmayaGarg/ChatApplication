@@ -25,3 +25,10 @@ With Socket.IO we will be able to notify clients or the app running in the brows
 when another user has sent a chat message, that way the app will update their message list instantly.
 Similar Functionality: Push Notifications (PN): where a server pushes an update or a message to a client or multiple clients, this works the same way.
 Benefit of Socket.IO library: If a browser is older and does not support WebSockets, it will default back to polling and it has that functionality buil-in.
+
+Socket.IO
+Setting up Socket.IO will be more tricky than most of the other packages because it needs to be tie in with Express.
+What do we want?
+But the game plan is to 
+1. create a regular HTTP server with Node that we will then 
+2. share with Express and Socket.IO.

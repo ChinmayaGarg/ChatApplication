@@ -1,6 +1,8 @@
 var express = require('express'); //
 var bodyParser = require('body-parser');
 var app = express(); //we set reference to app variable from an instance of express
+var http = require('http').Server(app); // we are adding http server, for it we called http library from Node and then we called .Server and then we pass app in it
+var io = require('socket.io')(http); //  We created io and passed reference of http
 
 // https://www.geeksforgeeks.org/express-js-app-use-function/
 //The app.use() function is used to mount the specified middleware function(s) at the path which is being specified. It is mostly used to set up middleware for your application.

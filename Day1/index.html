@@ -26,6 +26,13 @@
 <script src="/socket.io/socket.io.js"></script>
 <!-- Even after importing socket.io, we will get an error because we are unable to find Socket.IO JavaScript file that we included.-->
 <!-- The problem is that we can't directly serve our backend with Express any longer. We have to use Node http server to keep both Express and Socket.IO running -->
+<!-- Since we have made HTTP server on node, we cannot serve directly serve our backend with Express any longer. 
+     We will use the Node HTTP server, that way both Express and Socket.IO will be running. 
+     If we serve directly to express then Socket.IO will not run and give an error on console as Socket.IO and Express are not tied up. 
+     But, they are tied up using Node HTTP server. 
+     So, we have to use Node HTTP Server to keep both Express and Socket.IO running.
+     Hence inside our server.js we can do that by replacing the existing listen code from app.listen to http.listen.
+     This will change the server from Express to Node HTTP  -->
 
 <!-- For our demo application the most important will be jQuery. 
     We will be using jQuery in order to inject our data into the HTML, 

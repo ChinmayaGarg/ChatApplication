@@ -41,7 +41,8 @@ app.post('/messages', (req, res) => {
 });
 
 //starts the express service and listens for requests. It takes port number as first parameter
-var server = app.listen(3000, () => {
+var server = http.listen(3000, () => {
+  //changed from app.listen to http.listen, so that the server can be changed from Express server to Node HTTP server and it will help front-end to serve back-end with socket.io and it will no longer give any error
   console.log('Server is listening on port 3000'); //Port Hardcoded
 
   //Taken reference of the actual port in case it changes once we deploy our app on a server

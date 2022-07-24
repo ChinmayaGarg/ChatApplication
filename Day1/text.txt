@@ -38,3 +38,8 @@ We will submit an event from the server to all clients notifying them of a new m
 We will do this: 
     1. Emitting: We will emit an event from server in our post message endpoint function.
     2. Listening: We will listen to the emitted event on frontend by adding eventListener on our frontend.
+
+Next Problem to tackle:
+Every time we start our server, we loose our message history. We can solve this by:
+1. File write and read functionality or 
+2. Storing the messages in a database

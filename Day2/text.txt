@@ -1,1 +1,20 @@
 DataBase Implementation
+
+Many DB Technologies such as MongoDB, MySQL, Veras and many more.
+Node has packages to work with most of these options. These all options fall into two categories:
+1. SQL   2. NoSQL
+
+SQL
+Lot of Up-Front Design
+Sometimes performance and query benefits
+Sometimes performance hits from overhead
+
+NoSQL
+No structure, just collections of any data
+Less or no up-front design work
+Sometimes performance gains 
+
+No Perfect Solution 
+Depends on knowing and understanding your requirements
+
+For this Chat Application we will use NoSQL MongoDB. (Part of MEAN stack)

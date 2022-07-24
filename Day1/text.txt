@@ -7,3 +7,39 @@ $() is the shorthand version of the document ready event function.
 The document ready event signals that the DOM of the page is now ready, 
 so you can manipulate it without worrying that parts of the DOM has not yet been created. 
 The document ready event fires before all images etc. are loaded, but after the whole DOM itself is ready
+
+Currently, after sending message using send button on front-end we have to refresh the page to view the message.
+This can be solved using 2 strategies:
+1. Polling: With Polling in every few seconds we send an HTTP request asking the server:
+----> hey, are there any updates?
+----> hey, are there any new messages that I should display?
+Polling checks over and over, but 
+it would be much better if the server could just tell the client when a new message comes in
+without the clients having to constantly check. This is how "WebSockets" work.
+We have used "Socket.IO", a WebSocket library for this purpose. 
+
+https://www.geeksforgeeks.org/what-is-web-socket-and-how-it-is-different-from-the-http/
+2. WebSockets("Socket.IO" library)
+A WebSocket library that works for both the browser and Node.
+With Socket.IO we will be able to notify clients or the app running in the browser 
+when another user has sent a chat message, that way the app will update their message list instantly.
+Similar Functionality: Push Notifications (PN): where a server pushes an update or a message to a client or multiple clients, this works the same way.
+Benefit of Socket.IO library: If a browser is older and does not support WebSockets, it will default back to polling and it has that functionality buil-in.
+
+Socket.IO
+Setting up Socket.IO will be more tricky than most of the other packages because it needs to be tie in with Express.
+What we will do to tie Express and Socket.io? 
+The game plan is to: (create a common server with node and share with Express and Socket.IO to tie together)
+1. create a regular HTTP server with Node that we will then 
+2. share with Express and Socket.IO.
+
+Automatic message rendering on new message
+We will submit an event from the server to all clients notifying them of a new message.
+We will do this: 
+    1. Emitting: We will emit an event from server in our post message endpoint function.
+    2. Listening: We will listen to the emitted event on frontend by adding eventListener on our frontend.
+
+Next Problem to tackle:
+Every time we start our server, we loose our message history. We can solve this by:
+1. File write and read functionality or 
+2. Storing the messages in a database

@@ -37,6 +37,7 @@ app.post('/messages', (req, res) => {
   // This console.log renders undefined on the console because express has no built in support to parse the body. Hence, we need to install package, named "body-parser" using "npm install -s body-parser"
   console.log(req.body);
   messages.push(req.body);
+  io.emit('message', req.body); // Emitting the event named message. Event name can be anything we want. It tells this is the name of the event I will emit and you can listen this on front-end.
   res.sendStatus(200);
 });
 

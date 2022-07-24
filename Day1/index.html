@@ -76,6 +76,8 @@
     getMessages();
   });
 
+  socket.on('message', addMessages); // Listening. We are checking for a "message" event, being emitted from server. We just added the addMessages function since its signature matches exactly that of callback that we did need to supply with our socket.on call.
+
   // A function that will allow us to add messages to our message history
   function addMessages(message) {
     $('#messages').append(`<h4> ${message.name} </h4> <p>${message.message}</p>`);

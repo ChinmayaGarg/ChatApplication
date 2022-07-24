@@ -32,3 +32,9 @@ What we will do to tie Express and Socket.io?
 The game plan is to: (create a common server with node and share with Express and Socket.IO to tie together)
 1. create a regular HTTP server with Node that we will then 
 2. share with Express and Socket.IO.
+
+Automatic message rendering on new message
+We will submit an event from the server to all clients notifying them of a new message.
+We will do this: 
+    1. Emitting: We will emit an event from server in our post message endpoint function.
+    2. Listening: We will listen to the emitted event on frontend by adding eventListener on our frontend.

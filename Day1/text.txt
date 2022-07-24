@@ -28,7 +28,7 @@ Benefit of Socket.IO library: If a browser is older and does not support WebSock
 
 Socket.IO
 Setting up Socket.IO will be more tricky than most of the other packages because it needs to be tie in with Express.
-What do we want?
-But the game plan is to 
+What we will do to tie Express and Socket.io? 
+The game plan is to: (create a common server with node and share with Express and Socket.IO to tie together)
 1. create a regular HTTP server with Node that we will then 
 2. share with Express and Socket.IO.

@@ -18,3 +18,13 @@ No Perfect Solution
 Depends on knowing and understanding your requirements
 
 For this Chat Application we will use NoSQL MongoDB. (Part of MEAN stack)
+
+Setting Up MongoDB Environments
+1. We could run and download MongoDB locally but when it will come to publishing the app, 
+    a. we will need to host it seperately or 
+    b. find a third party host for it.
+Hence, we will start by using mLab, a service that offers free hosting. 
+mLab is now part of MongoDB and a few things might look different. But the tools to mange a DB should be the same.
+
+Make an account on mLab.com and setup the DB.
+After setting up we will connect Node to MongoDB and for this we will use a package called "Mongoose".

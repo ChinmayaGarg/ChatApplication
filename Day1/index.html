@@ -60,6 +60,10 @@
 </div>
 
 <script>
+  // Initalizing soocket.IO. This initialization will also try to make a connection to the Socket.IO server at the same URL that the current page is being hosted on.
+  // Hence, we have to setup a callback for the socket connection event that will let us know whenever a new user connects or in other words whenever a Socket.IO connection is succeessfully been made.
+  var socket = io();
+
   $(() => {
     $('#send').click(() => {
       // addMessages({ name: 'Chinmaya', message: 'Hi!! My name is Chinmaya' });

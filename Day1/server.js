@@ -40,6 +40,11 @@ app.post('/messages', (req, res) => {
   res.sendStatus(200);
 });
 
+// Seting up a callback for the socket connection event that will let us know whenever a new user connects.
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
 //starts the express service and listens for requests. It takes port number as first parameter
 var server = http.listen(3000, () => {
   //changed from app.listen to http.listen, so that the server can be changed from Express server to Node HTTP server and it will help front-end to serve back-end with socket.io and it will no longer give any error

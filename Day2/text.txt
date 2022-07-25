@@ -28,3 +28,8 @@ mLab is now part of MongoDB and a few things might look different. But the tools
 
 Make an account on mLab.com and setup the DB.
 After setting up we will connect Node to MongoDB and for this we will use a package called "Mongoose".
+
+Mongoose
+Mongoose allows us to elegantly work with our mongoDB database with object schemas.
+Object schemas are JS objects we create that will represent the type of data we will be putting in our database.
+Even though MongoDB is NoSQL and does not have structure, but with Mongoose there is a bit of a structure we must design initially. This gives us some benefits of easily interacting with our data through objects, and other things such as validation. 

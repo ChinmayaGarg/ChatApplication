@@ -22,10 +22,11 @@ var dbUrl = 'mongodb+srv://user:user@learning-node.4recu.mongodb.net/?retryWrite
 var Message = mongoose.model('Message', { name: String, message: String });
 // We have defined model, further we will define object based on the model.
 
-var messages = [
-  { name: 'Chinmaya', message: 'How are you?' },
-  { name: 'Professor X', message: 'I am good, what about you?' },
-];
+// removed messages array as we will no longer use the array because now we are directly saving the message in MongoDB using "Message.save()" and we will retrieve messages directly from DB using "Message.find()"
+// var messages = [
+//   { name: 'Chinmaya', message: 'How are you?' },
+//   { name: 'Professor X', message: 'I am good, what about you?' },
+// ];
 
 // Connecting to mongoDB
 // We supply dbURL(connection string that has auth credentials and reference to DB we created on cloud) as first parameter and callback function as second parameter
@@ -35,7 +36,12 @@ mongoose.connect(dbUrl, (err) => {
 });
 
 app.get('/messages', (req, res) => {
-  res.send(messages);
+  // First parameter contains requirements data that is be used to filter out data. Since, we don't have any requirements we will pass empty object.
+  // Second parameter is a callback function that takes in an error and all of the data it finds.
+  // We will then send the response(data) that we find in the DB
+  Message.find({}, (err, messages) => {
+    res.send(messages);
+  });
 });
 
 app.post('/messages', (req, res) => {
@@ -45,7 +51,8 @@ app.post('/messages', (req, res) => {
   message.save((err) => {
     if (err) sendStatus(500);
 
-    messages.push(req.body);
+    // removed messages array as we will no longer use the array because now we are directly saving the message in MongoDB using "Message.save()" and we will retrieve messages directly from DB using "Message.find()"
+    // messages.push(req.body);
     io.emit('message', req.body);
     res.sendStatus(200);
   });

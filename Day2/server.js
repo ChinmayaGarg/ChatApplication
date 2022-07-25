@@ -16,6 +16,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Now we will connect to mongoose as below.
 var dbUrl = 'mongodb+srv://user:user@learning-node.4recu.mongodb.net/?retryWrites=true&w=majority';
 
+// Setting Up initial structure
+// Structure we setup is a mongoose model and a schema for a message object.
+// First parameter specifies, what we call it. Second parameter takes in the schema definition which is an object with the properties
+var Message = mongoose.model('Message', { name: String, message: String });
+// We have defined model, further we will define object based on the model.
+
 var messages = [
   { name: 'Chinmaya', message: 'How are you?' },
   { name: 'Professor X', message: 'I am good, what about you?' },
@@ -33,9 +39,16 @@ app.get('/messages', (req, res) => {
 });
 
 app.post('/messages', (req, res) => {
-  messages.push(req.body);
-  io.emit('message', req.body);
-  res.sendStatus(200);
+  var message = new Message(req.body); // we created "message" object based on "Message" mongoose model.
+
+  // message.save() will save the messages in the DB and only then it will show new messages. If save fails then it will sendStatus 500
+  message.save((err) => {
+    if (err) sendStatus(500);
+
+    messages.push(req.body);
+    io.emit('message', req.body);
+    res.sendStatus(200);
+  });
 });
 
 io.on('connection', (socket) => {

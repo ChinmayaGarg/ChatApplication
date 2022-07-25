@@ -29,6 +29,18 @@ app.post('/messages', (req, res) => {
   message.save((err) => {
     if (err) sendStatus(500);
 
+    // Nested Callback to remove badword
+    Message.findOne({ message: 'badWord' }, (err, censoredMessage) => {
+      //callback returns the data object which contains the word that we are finding (in this case "badword")
+      if (!!censoredMessage) {
+        console.log('censored word found', censoredMessage);
+        Message.remove({ _id: censoredMessage.id }, (err) => {
+          // Even though we don't have id as part of our model but still we have id in our every object because mongoose creates and manages id for us anytime we save an object to our collection(Database)
+          console.log('removed censored message');
+        });
+      }
+    });
+
     io.emit('message', req.body);
     res.sendStatus(200);
   });

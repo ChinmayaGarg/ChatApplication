@@ -1,0 +1,10 @@
+In asynchronous programming, there is something many programmers refer to as "callback hell".
+It can happen to everyone and creates very difficult code.
+To understand this problem we will purposefully create this problem by implementing a bad word filter in our code using nested callbacks.
+
+Drawbacks of nested callbacks:
+1. Confusing
+2. Hard to understand for other team members. Hence, overhead in development process.
+Goal/Learning: Make clean code, quick to understand
+
+There are several tools that help us to avoid nested callbacks or "callback hell"

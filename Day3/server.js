@@ -24,28 +24,52 @@ app.get('/messages', (req, res) => {
   });
 });
 
-app.post('/messages', (req, res) => {
-  var message = new Message(req.body);
+// we declared the Express function async to work with await. Hence at this point we can use await at Message.save() which will return a value once it finishes and will save into a variable called savedMessage.
 
-  message
-    .save()
-    .then(() => {
-      console.log('saved');
-      return Message.findOne({ message: 'badWord' });
-    })
-    .then((censoredMessage) => {
-      if (censoredMessage) {
-        console.log('Badword Found, sent by:', censoredMessage.name);
-        console.log('Badword Deleted');
-        return Message.deleteMany({ _id: censoredMessage.id });
-      }
-      io.emit('message', req.body);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.log('Error Occured:', err);
-      res.sendStatus(500);
-    });
+app.post('/messages', async (req, res) => {
+  var message = new Message(req.body);
+  var savedMessage = await message.save();
+  console.log('saved');
+  var censoredMessage = await Message.findOne({ message: 'badWord' });
+  if (censoredMessage) {
+    console.log('Badword Found, sent by:', censoredMessage.name);
+    console.log('Badword Deleted');
+    return Message.deleteMany({ _id: censoredMessage.id });
+  } else {
+    io.emit('message', req.body);
+    res.sendStatus(200);
+  }
+
+  // .catch((err) => {
+  //   console.log('Error Occured:', err);
+  //   res.sendStatus(500);
+  // });
+
+  // -------------------------Below is synchronous code converted from asynchronous code using promises.-------------------------
+
+  // app.post('/messages', (req, res) => {
+  //   var message = new Message(req.body);
+
+  //   message
+  //     .save()
+  //     .then(() => {
+  //       console.log('saved');
+  //       return Message.findOne({ message: 'badWord' });
+  //     })
+  //     .then((censoredMessage) => {
+  //       if (censoredMessage) {
+  //         console.log('Badword Found, sent by:', censoredMessage.name);
+  //         console.log('Badword Deleted');
+  //         return Message.deleteMany({ _id: censoredMessage.id });
+  //       }
+  //       io.emit('message', req.body);
+  //       res.sendStatus(200);
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error Occured:', err);
+  //       res.sendStatus(500);
+  //     });
+
   // -------------------------Below is asynchronous code with nested callbacks and we have converted this to use promises.-------------------------
   //   message.save((err) => {
   //     if (err) sendStatus(500);

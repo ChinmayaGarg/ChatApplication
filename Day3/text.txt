@@ -16,3 +16,12 @@ Solution of Nested Callbacks:
     c. This object has seperate callbacks for success and failures. This lets us work with asynchronous code in a much more synchronous way.
     d. Best feature of promise: Promises can be combined into dependency chains.
 To demonstrate these features of promises we will convert the censor example with nested callbacks to use promises. This will make us see how promises will clean our code.
+
+With promises we changed the Async code to move downwards rather than inwards and hence more readable. 
+But to improve further Node.js introduced async/await functionality.
+
+https://javascript.info/async-await
+2. Async/Await
+    a. In order to work with await we need to declare our express function as async.
+    b. The word “async” before a function means: a function always returns a promise. Other values are wrapped in a resolved promise automatically.
+    c. The keyword await makes JavaScript wait until that promise settles and returns its result.

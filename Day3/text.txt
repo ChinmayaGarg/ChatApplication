@@ -8,3 +8,11 @@ Drawbacks of nested callbacks:
 Goal/Learning: Make clean code, quick to understand
 
 There are several tools that help us to avoid nested callbacks or "callback hell"
+
+Solution of Nested Callbacks:
+1. Promises:
+    a. This is one of the options on how to work with asynchronous code.
+    b. Promises return an object which promise to do some work.
+    c. This object has seperate callbacks for success and failures. This lets us work with asynchronous code in a much more synchronous way.
+    d. Best feature of promise: Promises can be combined into dependency chains.
+To demonstrate these features of promises we will convert the censor example with nested callbacks to use promises. This will make us see how promises will clean our code.

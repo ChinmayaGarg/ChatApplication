@@ -25,3 +25,16 @@ https://javascript.info/async-await
     a. In order to work with await we need to declare our express function as async.
     b. The word “async” before a function means: a function always returns a promise. Other values are wrapped in a resolved promise automatically.
     c. The keyword await makes JavaScript wait until that promise settles and returns its result.
+
+Exercise:
+Question Convert following asynchronous function into async/await
+    MyFunction(){
+        GetMessages(list)=>{
+            console.log(list);
+        }
+    }
+Answer
+    async MyFunction(){
+        var list = await GetMessages();
+        console.log(list)
+    }

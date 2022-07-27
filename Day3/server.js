@@ -39,57 +39,55 @@ app.post('/messages', async (req, res) => {
     io.emit('message', req.body);
     res.sendStatus(200);
   }
-
-  // .catch((err) => {
-  //   console.log('Error Occured:', err);
-  //   res.sendStatus(500);
-  // });
-
-  // -------------------------Below is synchronous code converted from asynchronous code using promises.-------------------------
-
-  // app.post('/messages', (req, res) => {
-  //   var message = new Message(req.body);
-
-  //   message
-  //     .save()
-  //     .then(() => {
-  //       console.log('saved');
-  //       return Message.findOne({ message: 'badWord' });
-  //     })
-  //     .then((censoredMessage) => {
-  //       if (censoredMessage) {
-  //         console.log('Badword Found, sent by:', censoredMessage.name);
-  //         console.log('Badword Deleted');
-  //         return Message.deleteMany({ _id: censoredMessage.id });
-  //       }
-  //       io.emit('message', req.body);
-  //       res.sendStatus(200);
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error Occured:', err);
-  //       res.sendStatus(500);
-  //     });
-
-  // -------------------------Below is asynchronous code with nested callbacks and we have converted this to use promises.-------------------------
-  //   message.save((err) => {
-  //     if (err) sendStatus(500);
-
-  //     // Nested Callback to remove badword
-  //     Message.findOne({ message: 'badWord' }, (err, censoredMessage) => {
-  //       //callback returns the data object which contains the word that we are finding (in this case "badword")
-  //       if (!!censoredMessage) {
-  //         console.log('censored word found', censoredMessage);
-  //         Message.remove({ _id: censoredMessage.id }, (err) => {
-  //           // Even though we don't have id as part of our model but still we have id in our every object because mongoose creates and manages id for us anytime we save an object to our collection(Database)
-  //           console.log('removed censored message');
-  //         });
-  //       }
-  //     });
-
-  //     io.emit('message', req.body);
-  //     res.sendStatus(200);
-  //   });
 });
+
+// -------------------------Below is synchronous code converted from asynchronous code using promises.-------------------------
+
+// app.post('/messages', (req, res) => {
+//   var message = new Message(req.body);
+
+//   message
+//     .save()
+//     .then(() => {
+//       console.log('saved');
+//       return Message.findOne({ message: 'badWord' });
+//     })
+//     .then((censoredMessage) => {
+//       if (censoredMessage) {
+//         console.log('Badword Found, sent by:', censoredMessage.name);
+//         console.log('Badword Deleted');
+//         return Message.deleteMany({ _id: censoredMessage.id });
+//       }
+//       io.emit('message', req.body);
+//       res.sendStatus(200);
+//     })
+//     .catch((err) => {
+//       console.log('Error Occured:', err);
+//       res.sendStatus(500);
+//     });
+// });
+// -------------------------Below is asynchronous code with nested callbacks and we have converted this to use promises.-------------------------
+// app.post('/messages', (req, res) => {
+//   var message = new Message(req.body);
+//   message.save((err) => {
+//     if (err) sendStatus(500);
+
+//     // Nested Callback to remove badword
+//     Message.findOne({ message: 'badWord' }, (err, censoredMessage) => {
+//       //callback returns the data object which contains the word that we are finding (in this case "badword")
+//       if (!!censoredMessage) {
+//         console.log('censored word found', censoredMessage);
+//         Message.remove({ _id: censoredMessage.id }, (err) => {
+//           // Even though we don't have id as part of our model but still we have id in our every object because mongoose creates and manages id for us anytime we save an object to our collection(Database)
+//           console.log('removed censored message');
+//         });
+//       }
+//     });
+
+//     io.emit('message', req.body);
+//     res.sendStatus(200);
+//   });
+// });
 
 io.on('connection', (socket) => {
   console.log('a user connected');

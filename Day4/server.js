@@ -39,6 +39,9 @@ app.post('/messages', async (req, res) => {
   } catch (error) {
     res.sendStatus(500);
     return console.log(error);
+  } finally {
+    //logger.log('message post called')
+    console.log('message post called');
   }
 });
 

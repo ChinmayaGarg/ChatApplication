@@ -25,17 +25,23 @@ app.get('/messages', (req, res) => {
 });
 
 app.post('/messages', async (req, res) => {
-  var message = new Message(req.body);
-  var savedMessage = await message.save();
-  console.log('saved');
-  var censoredMessage = await Message.findOne({ message: 'badWord' });
-  if (censoredMessage) {
-    console.log('Badword Found, sent by:', censoredMessage.name);
-    console.log('Badword Deleted');
-    return Message.deleteMany({ _id: censoredMessage.id });
-  } else {
-    io.emit('message', req.body);
+  try {
+    var message = new Message(req.body);
+    var savedMessage = await message.save();
+    console.log('saved');
+    var censoredMessage = await Message.findOne({ message: 'badWord' });
+    if (censoredMessage) {
+      console.log('Badword Found, sent by:', censoredMessage.name);
+      console.log('Badword Deleted');
+      return Message.deleteMany({ _id: censoredMessage.id });
+    } else io.emit('message', req.body);
     res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500);
+    return console.log(error);
+  } finally {
+    //logger.log('message post called')
+    console.log('message post called');
   }
 });
 

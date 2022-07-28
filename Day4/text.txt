@@ -1,0 +1,23 @@
+try
+catch
+throw
+finally : Gets executed regardless if the try-catch block fails or passes.
+          Finally is used in less cases like 
+            a. Submitting something to a log, 
+            b. A resource that we need to shut down like in case of DB we open a connection, post something and then we might close it in the finally etc.
+          Most of the times only try-catch blocks are used.
+
+Exercise Question 1: Change below function to handle error using Error Handling methods
+
+MyFunction(){
+    request((result,err)=>console.log(result,err))
+}
+
+async MyFunction(){
+    try{
+        const result = await request();
+        console.log(result);
+    } catch {
+        console.log(err)
+    }
+}
